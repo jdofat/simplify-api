@@ -36,11 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
     loadingScreen.style.display = "flex";
     loadingText.textContent = "simplifying...";
 
-    const res = await fetch("/simplify", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ topic }),
-});
+    try {
+      // Use your backend to simplify the topic
+      const simplifiedText = await fetchSimplifiedExplanation(topic);
 
       // Fade out loading, fade in result
       loadingScreen.classList.add("fade-out");
@@ -58,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Actual API call to Render backend
   async function fetchSimplifiedExplanation(topic) {
-    const res = await fetch("https://simplify-api-n0na.onrender.com/simplify", {
+    const res = await fetch("/simplify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ topic }),
