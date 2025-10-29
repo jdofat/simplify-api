@@ -36,9 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
     loadingScreen.style.display = "flex";
     loadingText.textContent = "simplifying...";
 
-    try {
-      // Fetch explanation from your Render backend
-      const simplifiedText = await fetchSimplifiedExplanation(topic);
+    const res = await fetch("/simplify", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ topic }),
+});
 
       // Fade out loading, fade in result
       loadingScreen.classList.add("fade-out");
