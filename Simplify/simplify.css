@@ -1,0 +1,210 @@
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+ 
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* Fade animation helper classes */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.8s ease forwards;
+}
+
+body {
+  display: flex;                   /* make it a flex container */
+  flex-direction: column;          /* keep elements stacked vertically */
+  justify-content: flex-start;         /* center vertically */
+  align-items: center;             /* center horizontally */
+  min-height: 100vh;                   /* take full viewport height */
+  margin: 0;
+  text-align: center;
+  
+  font-family: 'Lexend', sans-serif;
+  background: linear-gradient(to top right,
+    #82e0dc,
+    #8bcae0,
+    #d4d5ff,
+    #ffe3f0,
+    #ffeae3);
+}
+
+ header {
+  line-height: 0.2;
+  margin-top: 300px;
+}
+ 
+main {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+ 
+ header, main {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in forwards;
+}
+
+
+#mainContainer {
+  min-height: 50px;
+}
+
+#inputSection {
+  margin-top: -60px;
+}
+
+h1,h2,h3,h4,h5 {
+  font-family: 'Lexend', sans-serif;
+  text-align: center;
+  color: black;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 800%;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-size: 500%;
+}
+
+h3 {
+  font-size: 200%;
+}
+
+h4 {
+  font-size: 180%;
+}
+
+h5 {
+  font-size: 50%;
+}
+
+button {
+  background-color: black;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 30px;      /* rounded corners */
+  border: none;             /* removes outline/border */
+  outline: none;
+  cursor: pointer;         /* pointer on hover */
+  font-family: 'Lexend', sans-serif;
+  font-size: 20px;
+  transition: all 0.5s ease; /* smooth hover effect */
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in 1s forwards;
+}
+
+button:hover {
+  background-color: white;
+  color: black;
+}
+
+input {
+  padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  text-align: left;
+  font-family: 'Lexend', sans-serif;
+  width: 330px;
+  height: 50px;
+  background-color: white;
+}
+
+input:valid {
+  background-color: white;
+    }
+
+input:focus {
+  outline: none;
+  background-color: white;
+}
+
+
+#goButton {
+  margin-left: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-family: 'Lexend', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+#goButton:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Full-screen loading overlay */
+#loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top right,
+    #82e0dc,
+    #8bcae0,
+    #d4d5ff,
+    #ffe3f0,
+    #ffeae3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Spinner animation */
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid black;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+#resultSection {
+  opacity: 0;
+  text-align: center;
+  max-width: 600px;
+  margin-top: 20px;
+  animation: fadeIn 1s ease forwards;
+}
+
+#explanationText {
+  font-size: 18px;
+  line-height: 1.5;
+  color: black;
+  margin-top: 10px;
+}

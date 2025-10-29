@@ -1,0 +1,98 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+nav {
+    display: center;
+    text-align: center;
+    border-radius: 5px;  
+    width: 30%;
+    margin-left: 35%;
+}
+
+nav ul {
+    list-style: none;           /* remove bullets */
+    padding: 0;                 /* remove default padding */
+    margin: 0;
+    display: flex;              /* horizontal layout */
+    align-items: center;
+    justify-content: center;    /* center items inside nav */
+    gap: 10px;                  /* space between buttons and "or" */
+}
+
+nav ul li {
+    display: inline;            /* ensure li behaves inline */
+}
+
+nav ul p {
+    margin: 0;                  /* remove extra spacing from "or" */
+    line-height: 2;             /* vertically center "or" with buttons */
+}
+
+p {
+    margin-right: 20%;
+    margin-left: 20%;
+
+}
+
+h1,h2,h3,p, li, ul, main {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    list-style-type: none;
+    padding: 0;
+    line-height: 1.2;             
+}
+
+.welcome {
+    font-size: 300%;
+    margin-bottom: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.title {
+        color: rgb(133, 36, 36); 
+        font-size: 600%;
+        font-family: 'Poppins', sans-serif;
+        margin-top: 0;
+}
+
+header h1 {
+    font-size: 500%;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 175%;
+    margin-bottom: 0;
+}
+
+header h2 {
+    margin-top: 0;
+}
+
+h3 {
+    font-size: 100%;
+    margin-top: 0;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    background-color: transparent;   /* no fill */
+    border: 3px solid rgb(133, 36, 36);           /* red outline */
+    color: rgb(56, 8, 8);                      /* red text */
+    border-radius: 12px;             /* rounded corners */
+    padding: 8px 16px;               /* spacing inside button */
+    cursor: pointer;
+}
+
+img {
+    max-width: 80px;
+    height: auto;    
+    margin-top: 0;
+}
