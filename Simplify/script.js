@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show loading screen
     inputSection.style.display = "none";
     loadingScreen.style.display = "flex";
-    loadingText.textContent = "simplifying...";
+    loadingText.textContent = "Simplifying...";
 
     try {
-      // Use your backend to simplify the topic
+      // Call backend API (relative path)
       const simplifiedText = await fetchSimplifiedExplanation(topic);
 
       // Fade out loading, fade in result
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Actual API call to Render backend
+  // Fetch simplified explanation from backend
   async function fetchSimplifiedExplanation(topic) {
     const res = await fetch("/simplify", {
       method: "POST",
