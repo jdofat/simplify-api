@@ -1,14 +1,12 @@
 from flask import Flask, request, jsonify
-import openai
+from flask_cors import CORS
+from openai import OpenAI
 import os
 
 app = Flask(__name__)
+CORS(app)
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-@app.route("/")
-def home():
-    return "Simplify API is running!"
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @app.route("/simplify", methods=["POST"])
 def simplify():
@@ -19,20 +17,19 @@ def simplify():
         return jsonify({"error": "No topic provided"}), 400
 
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You explain complex topics simply for beginners."},
-                {"role": "user", "content": f"Explain '{topic}' in simple, easy terms anyone can understand."}
+                {"role": "system", "content": "You explain topics simply and clearly."},
+                {"role": "user", "content": f"Simplify this topic in simple terms: {topic}"}
             ]
         )
-
-        explanation = response["choices"][0]["message"]["content"]
-        return jsonify({"explanation": explanation})
-
+        simplified_text = response.choices[0].message.content
+        return jsonify({"simplifiedText": simplified_text})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=10000)
+
