@@ -3,12 +3,13 @@ from flask_cors import CORS
 from openai import OpenAI
 import os
 
+# Tell Flask where your static frontend files are
 app = Flask(__name__, static_folder="Simplify", static_url_path="")
 CORS(app)
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Serve your frontend (index.html, style.css, script.js)
+# Serve your frontend
 @app.route("/")
 def serve_index():
     return send_from_directory(app.static_folder, "index.html")
@@ -17,7 +18,7 @@ def serve_index():
 def serve_static(path):
     return send_from_directory(app.static_folder, path)
 
-# Your AI route
+# Simplify route for your AI logic
 @app.route("/simplify", methods=["POST"])
 def simplify():
     data = request.get_json()
