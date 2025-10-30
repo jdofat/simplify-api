@@ -9,6 +9,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const topicInput = document.getElementById("topicInput");
   const resultSection = document.getElementById("resultSection");
   const explanationText = document.getElementById("explanationText");
+  const restartButton = document.getElementById("restartButton");
+
+restartButton.addEventListener("click", () => {
+    // Hide the result section
+    resultSection.style.display = "none";
+    resultSection.classList.remove("fade-in");
+
+    // Reset input field
+    topicInput.value = "";
+
+    // Show start section and intro label again
+    startSection.style.display = "block";
+    introLabel.style.display = "block";
+    startButton.classList.remove("fade-out");
+    introLabel.classList.remove("fade-out");
+    startButton.classList.add("fade-in");
+    introLabel.classList.add("fade-in");
+});
 
   // Fade transition from start to input section
   startButton.addEventListener("click", () => {
