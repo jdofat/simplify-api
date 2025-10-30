@@ -64,8 +64,55 @@ header, main {
   min-height: 50px;
 }
 
+
 #inputSection {
-  margin-top: -60px;
+  margin-top: -1%;
+  line-height: 1;
+}
+
+
+/* what can i help you understand? */
+
+
+#inputSection h4 {
+  font-size: 1.3rem; /* ~130% of base */
+  margin-bottom: 5%;
+  margin-top: 1%;
+  line-height: 1.2;
+}
+
+@media (max-width: 870px) {
+  #inputSection h4 {
+    font-size: 1.1rem;
+    margin-bottom: 4%;
+    margin-top: 0%;
+  }
+}
+
+@media (max-width: 600px) {
+  #inputSection h4 {
+    font-size: 1rem;
+    margin-bottom: 3%;
+    margin-top: 0%;
+  }
+}
+
+
+/* xxx */
+
+
+@media (min-width: 600px) {
+  #inputSection {
+    margin-top: -1%;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1070px) {
+  #inputSection {
+    margin-top: -1%;
+    line-height: 1;
+  }
 }
 
 h1, h2, h3, h4, h5 {
@@ -97,9 +144,33 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   letter-spacing: 2px;
+
 }
+
+/* Fix under 770px */
+@media (max-width: 770px) {
+  h1 {
+    font-size: 4.7rem;
+  }
+}
+
+/* Slightly bigger between 400px and 600px */
+@media (max-width: 600px) and (min-width: 400px) {
+  h1 {
+    font-size: 4.7rem; /* ~10% bigger than 4rem */
+  }
+}
+
+/* Very small screens under 400px */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 4.7rem;
+  }
+}
+
+
 
 h3, h4 {
   font-size: clamp(1rem, 4vw, 1.8rem);
@@ -137,8 +208,8 @@ input {
   border: none;
   font-family: 'Lexend', sans-serif;
   font-size: 1rem;
-  width: 80%;
-  max-width: 320px;
+  width: 70%;
+  max-width: 300px;
   height: 46px;
   background-color: white;
 }
@@ -223,19 +294,75 @@ input:focus {
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
 
-  #explain {
-    flex-direction: column;
-    gap: 12px;
-  }
+#explain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
 
-  input {
-    width: 100%;
-  }
 
-  #goButton {
-    width: 100%;
+/* text box */
+
+/* Default input size */
+#topicInput {
+  flex: 1 1 auto;       /* allows input to grow/shrink */
+  min-width: 150px;     /* prevents it from being unusably small */
+  max-width: 400px;
+  height: 50px;
+  font-size: 1rem;
+  border-radius: 30px;
+  border: none;
+  padding: 0 20px;
+  font-family: 'Lexend', sans-serif;
+  background-color: white;
+}
+
+/* Medium screens */
+@media (max-width: 1180px) {
+  #topicInput {
+    flex: 1 1 40%;
+    max-width: 250px;
   }
+}
+
+/* Smaller screens */
+@media (max-width: 870px) {
+  #topicInput {
+    flex: 1 1 35%;
+    max-width: 200px;
+  }
+}
+
+/* Mobile: nearly full width */
+@media (max-width: 600px) {
+  #topicInput {
+    flex: 1 1 80%;
+    max-width: none;
+  }
+}
+
+
+
+/*    xxx.    */
+
+
+#goButton {
+  width: 25%;
+  max-width: 120px;
+  min-width: 80px;
+  height: 50px;
+  font-size: 1rem;
+}
+
+#goButton:hover {
+  background-color: white;
+  color: black;
 }
