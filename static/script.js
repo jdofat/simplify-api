@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       introLabel.style.display = "none";
       inputSection.style.display = "block";
       inputSection.classList.add("fade-in");
-    }, 800);
+    }, 400); // reduced from 800
   });
 
   // "Simplify" button → show loading → fetch simplified text
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
           introLabel.classList.add("fade-in");
         });
 
-      }, 800);
+      }, 400); // reduced from 800
     } catch (error) {
       loadingText.textContent = "try something else.";
       console.error(error);
