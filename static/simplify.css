@@ -208,3 +208,16 @@ input:focus {
   color: black;
   margin-top: 10px;
 }
+
+#explanationText {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #ccc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-size: 18px;
+  text-align: left;
+  margin-top: 15px;
+  white-space: pre-wrap; /* keeps formatting if GPT uses line breaks */
+}
