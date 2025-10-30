@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   learnMoreSection.id = "learnMoreSection";
   learnMoreSection.style.display = "none";
   learnMoreSection.innerHTML = `
-      <h3>learn more</h3>
+      <h3>learn more:</h3>
       <ul id="learnMoreLinks"></ul>
   `;
   resultSection.appendChild(learnMoreSection);
