@@ -1,47 +1,44 @@
- <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Simplify</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='simplify.css') }}">
-        <script src="{{ url_for('static', filename='script.js') }}"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='simplify.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  </head>
 
-    <body>
+  <body>
+    <header>
+      <h1>simplify</h1>
+      <h3 id="introLabel">an ai-powered explainer</h3>
+    </header>
 
-        <header>
-            <h1>simplify</h1>
-            <h3 id="introLabel">an ai-powered explainer</h3>
-        </header>
+    <main id="mainContainer">
+      <div id="startSection">
+        <button id="startButton">start</button>
+      </div>
 
-<main id="mainContainer">
-  <div id="startSection">
-    <button id="startButton">start</button>
-  </div>
+      <div id="inputSection" style="display: none;">
+        <h4>what can i help you understand?</h4>
+        <div id="explain">
+          <input type="text" id="topicInput" placeholder="Explain...">
+          <button id="goButton">simplify</button>
+        </div>
+      </div>
 
-  <div id="inputSection" style="display: none;">
-    <h4>what can i help you understand?</h4>
-  
-  <div id="explain">
-    <input type="text" id="topicInput" placeholder="Explain...">
-    <button id="goButton">simplify</button>
-  </div>
-  
-  </div>
+      <!-- Hidden loading overlay -->
+      <div id="loadingScreen" style="display: none;">
+        <div class="spinner"></div>
+        <h3>simplifying...</h3>
+      </div>
 
-  <!-- Hidden loading overlay -->
-  <div id="loadingScreen" style="display: none;">
-    <div class="spinner"></div>
-    <h3>simplifying...</h3>
-  </div>
+      <div id="resultSection" style="display: none;">
+        <h3>simplified explanation:</h3>
+        <p id="explanationText"></p>
+      </div>
+    </main>
 
-  <div id="resultSection" style="display: none;">
-    <h3>simplified explanation:</h3>
-    <p id="explanationText"></p>
-  </div>
-
-</main>
-  
-</body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
 </html>
