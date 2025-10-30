@@ -165,11 +165,13 @@ button:hover { background-color: white; color: black; }
   max-width: 90%;
   background-color: white;
   border-radius: 16px;
-  padding: 25px 30px; /* slightly bigger padding */
+  padding: 25px 30px;
   margin-top: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* deeper shadow */
+  margin-left: 10px;
+  margin-right: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   animation: fadeIn 1s ease forwards;
-  word-break: break-word; /* prevent overflow */
+  word-break: break-word;
 }
 
 #explanationText {
