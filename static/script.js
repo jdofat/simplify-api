@@ -1,73 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("startButton");
-  const introLabel = document.getElementById("introLabel");
   const inputSection = document.getElementById("inputSection");
   const startSection = document.getElementById("startSection");
   const goButton = document.getElementById("goButton");
-  const loadingScreen = document.getElementById("loadingScreen");
-  const loadingText = document.getElementById("loadingText");
   const topicInput = document.getElementById("topicInput");
+  const loadingScreen = document.getElementById("loadingScreen");
   const resultSection = document.getElementById("resultSection");
   const explanationText = document.getElementById("explanationText");
 
-  // Fade to input section
+  // Show the input section when "start" is clicked
   startButton.addEventListener("click", () => {
-    startButton.classList.add("fade-out");
-    introLabel.classList.add("fade-out");
-
-    setTimeout(() => {
-      startSection.style.display = "none";
-      introLabel.style.display = "none";
-      inputSection.style.display = "block";
-      inputSection.classList.add("fade-in");
-    }, 800);
+    startSection.style.display = "none";
+    inputSection.style.display = "block";
   });
 
-  // "Go" button → show loading → fetch simplified text
+  // Handle "simplify" button click
   goButton.addEventListener("click", async () => {
     const topic = topicInput.value.trim();
-    if (topic === "") {
-      alert("Please enter a topic first.");
-      return;
-    }
+    if (!topic) return;
 
-    // Show loading screen
-    inputSection.style.display = "none";
+    // Show loading overlay
     loadingScreen.style.display = "flex";
-    loadingText.textContent = "Simplifying...";
+    resultSection.style.display = "none";
 
     try {
-      // Call backend API (relative path)
-      const simplifiedText = await fetchSimplifiedExplanation(topic);
+      const response = await fetch("/simplify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ topic }),
+      });
 
-      // Fade out loading, fade in result
-      loadingScreen.classList.add("fade-out");
-      setTimeout(() => {
-        loadingScreen.style.display = "none";
-        explanationText.textContent = simplifiedText;
+      const data = await response.json();
+      if (data.simplifiedText) {
+        explanationText.innerText = data.simplifiedText;
         resultSection.style.display = "block";
-        resultSection.classList.add("fade-in");
-      }, 800);
+      } else {
+        explanationText.innerText = "Something went wrong. Try again!";
+        resultSection.style.display = "block";
+      }
     } catch (error) {
-      loadingText.textContent = "Error: Could not simplify. Try again.";
-      console.error(error);
+      explanationText.innerText = "Error connecting to Simplify API.";
+      resultSection.style.display = "block";
     }
+
+    // Hide loading overlay
+    loadingScreen.style.display = "none";
   });
-
-  // Fetch simplified explanation from backend
-  async function fetchSimplifiedExplanation(topic) {
-    const res = await fetch("/simplify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok || !data.simplifiedText) {
-      throw new Error(data.error || "No response from API");
-    }
-
-    return data.simplifiedText;
-  }
 });
