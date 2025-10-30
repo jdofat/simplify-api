@@ -69,8 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const rawText = data.simplifiedText.replace(/\*\*/g, "");
         const paragraphs = rawText.split(/\.\s+/);
         explanationText.innerHTML = paragraphs
-        .map(p => `<p>${p.trim()}.</p>`)
-        .join("");
+          .map(p => `<p>${p.trim()}.</p>`)
+          .join("");
 
         resultSection.style.display = "block";
         resultSection.classList.add("fade-in");
@@ -78,28 +78,28 @@ document.addEventListener("DOMContentLoaded", () => {
         // Show Learn More section after explanation
         showLearnMoreSection(topic);
 
-        // Dynamically create Start Over button
+        // Create Start Over button OUTSIDE white box
         let restartButton = document.createElement("button");
         restartButton.textContent = "Start Over";
         restartButton.id = "restartButton";
-        restartButton.style.marginTop = "20px";
-        resultSection.appendChild(restartButton);
+        restartButton.style.margin = "20px auto"; // center
+        restartButton.style.display = "block";
+        mainContainer.appendChild(restartButton);
 
-        // Add click handler
-        restartButton.addEventListener("click", () => {
-          resultSection.style.display = "none";
-          resultSection.classList.remove("fade-in", "fade-out");
-          restartButton.remove();
-          topicInput.value = "";
-          startSection.style.display = "block";
-          introLabel.style.display = "block";
-          startButton.classList.remove("fade-out");
-          introLabel.classList.remove("fade-out");
-          startButton.classList.add("fade-in");
-          introLabel.classList.add("fade-in");
-          learnMoreSection.style.display = "none"; // hide Learn More on reset
-        });
-      }, 400);
+       restartButton.addEventListener("click", () => {
+       resultSection.style.display = "none";
+       resultSection.classList.remove("fade-in", "fade-out");
+       restartButton.remove();
+       topicInput.value = "";
+       startSection.style.display = "block";
+       introLabel.style.display = "block";
+       startButton.classList.remove("fade-out");
+       introLabel.classList.remove("fade-out");
+       startButton.classList.add("fade-in");
+       introLabel.classList.add("fade-in");
+       learnMoreSection.style.display = "none"; // hide Learn More on reset
+  });
+}, 400);
 
     } catch (error) {
       loadingText.textContent = "try something else.";
