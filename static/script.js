@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Create Start Over button OUTSIDE white box
         let restartButton = document.createElement("button");
-        restartButton.textContent = "Start Over";
+        restartButton.textContent = "start over";
         restartButton.id = "restartButton";
         restartButton.style.margin = "20px auto"; // center
         restartButton.style.display = "block";
