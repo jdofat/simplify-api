@@ -172,6 +172,7 @@ button:hover { background-color: white; color: black; }
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   animation: fadeIn 1s ease forwards;
   word-break: break-word;
+  margin-bottom: 50px;
 }
 
 #explanationText {
@@ -193,11 +194,19 @@ button:hover { background-color: white; color: black; }
 
 #explanationText ol {
   margin: 10px 0 10px 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#explanationText ul {
+  list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 
 #explanationText li {
-  margin-bottom: 8px; /* spacing between list items */
+  margin-bottom: 8px;
 }
 
 #restartButton {
