@@ -1,51 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("startButton");
+  const introLabel = document.getElementById("introLabel");
   const inputSection = document.getElementById("inputSection");
   const startSection = document.getElementById("startSection");
   const goButton = document.getElementById("goButton");
-  const topicInput = document.getElementById("topicInput");
   const loadingScreen = document.getElementById("loadingScreen");
+  const loadingText = document.getElementById("loadingText");
+  const topicInput = document.getElementById("topicInput");
   const resultSection = document.getElementById("resultSection");
   const explanationText = document.getElementById("explanationText");
 
-  // Show the input section when "start" is clicked
+  // Fade transition from start to input section
   startButton.addEventListener("click", () => {
-    startSection.style.display = "none";
-    inputSection.style.display = "block";
+    startButton.classList.add("fade-out");
+    introLabel.classList.add("fade-out");
+
+    setTimeout(() => {
+      startSection.style.display = "none";
+      introLabel.style.display = "none";
+      inputSection.style.display = "block";
+      inputSection.classList.add("fade-in");
+    }, 800);
   });
 
-  // Handle "simplify" button click
+  // "Simplify" button → show loading → fetch simplified text
   goButton.addEventListener("click", async () => {
     const topic = topicInput.value.trim();
-    if (!topic) return;
+    if (topic === "") {
+      alert("Please enter a topic first.");
+      return;
+    }
 
-    // Show loading overlay
+    // Show loading screen
+    inputSection.style.display = "none";
     loadingScreen.style.display = "flex";
-    resultSection.style.display = "none";
+    loadingText.textContent = "Simplifying...";
 
     try {
-      const response = await fetch("/simplify", {
+      const res = await fetch("/simplify", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic }),
       });
 
-      const data = await response.json();
-      if (data.simplifiedText) {
-        explanationText.innerText = data.simplifiedText;
-        resultSection.style.display = "block";
-      } else {
-        explanationText.innerText = "Something went wrong. Try again!";
-        resultSection.style.display = "block";
-      }
-    } catch (error) {
-      explanationText.innerText = "Error connecting to Simplify API.";
-      resultSection.style.display = "block";
-    }
+      const data = await res.json();
 
-    // Hide loading overlay
-    loadingScreen.style.display = "none";
+      if (!res.ok || !data.simplifiedText) {
+        throw new Error(data.error || "No response from API");
+      }
+
+      // Fade out loading, fade in result
+      loadingScreen.classList.add("fade-out");
+      setTimeout(() => {
+        loadingScreen.style.display = "none";
+        explanationText.textContent = data.simplifiedText;
+        resultSection.style.display = "block";
+        resultSection.classList.add("fade-in");
+      }, 800);
+    } catch (error) {
+      loadingText.textContent = "Error: Could not simplify. Try again.";
+      console.error(error);
+    }
   });
 });
