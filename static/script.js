@@ -54,7 +54,7 @@ restartButton.addEventListener("click", () => {
     // Show loading screen
     inputSection.style.display = "none";
     loadingScreen.style.display = "flex";
-    loadingText.textContent = "Simplifying...";
+    loadingText.textContent = "simplifying...";
 
     try {
       const res = await fetch("/simplify", {
