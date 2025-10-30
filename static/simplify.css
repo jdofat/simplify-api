@@ -197,3 +197,20 @@ button:hover { background-color: white; color: black; }
 #explanationText li {
   margin-bottom: 8px; /* spacing between list items */
 }
+
+#restartButton {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    transition: all 0.4s ease;
+}
+
+#restartButton:hover {
+    background-color: white;
+    color: black;
+}
