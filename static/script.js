@@ -10,6 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultSection = document.getElementById("resultSection");
   const explanationText = document.getElementById("explanationText");
 
+  // Create Learn More container
+  const learnMoreSection = document.createElement("div");
+  learnMoreSection.id = "learnMoreSection";
+  learnMoreSection.style.display = "none";
+  learnMoreSection.innerHTML = `
+    <div class="white-box">
+      <h3>Learn More</h3>
+      <ul id="learnMoreLinks"></ul>
+    </div>
+  `;
+  resultSection.appendChild(learnMoreSection);
+  const learnMoreLinks = document.getElementById("learnMoreLinks");
+
   // Fade transition from start to input section
   startButton.addEventListener("click", () => {
     startButton.classList.add("fade-out");
@@ -31,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Show loading screen
+    // Hide input, show loading
     inputSection.style.display = "none";
     loadingScreen.style.display = "flex";
     loadingText.textContent = "one sec";
@@ -57,6 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
         resultSection.style.display = "block";
         resultSection.classList.add("fade-in");
 
+        // Show Learn More section after explanation
+        showLearnMoreSection(topic);
+
         // Dynamically create Start Over button
         let restartButton = document.createElement("button");
         restartButton.textContent = "Start Over";
@@ -68,26 +84,45 @@ document.addEventListener("DOMContentLoaded", () => {
         restartButton.addEventListener("click", () => {
           resultSection.style.display = "none";
           resultSection.classList.remove("fade-in", "fade-out");
-
-          // Remove restart button
           restartButton.remove();
-
-          // Reset input field
           topicInput.value = "";
-
-          // Show start section and intro label again
           startSection.style.display = "block";
           introLabel.style.display = "block";
           startButton.classList.remove("fade-out");
           introLabel.classList.remove("fade-out");
           startButton.classList.add("fade-in");
           introLabel.classList.add("fade-in");
+          learnMoreSection.style.display = "none"; // hide Learn More on reset
         });
+      }, 400);
 
-      }, 400); // reduced from 800
     } catch (error) {
       loadingText.textContent = "try something else.";
       console.error(error);
     }
   });
+
+  // Function to populate Learn More links
+  function showLearnMoreSection(topic) {
+    learnMoreLinks.innerHTML = "";
+
+    const query = encodeURIComponent(topic);
+    const sources = [
+      `https://en.wikipedia.org/wiki/${query}`,
+      `https://www.google.com/search?q=${query}`,
+      `https://www.khanacademy.org/search?search_again=1&page_search_query=${query}`
+    ];
+
+    sources.forEach(url => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.textContent = new URL(url).hostname.replace("www.", "");
+      li.appendChild(a);
+      learnMoreLinks.appendChild(li);
+    });
+
+    learnMoreSection.style.display = "block";
+  }
 });
