@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadingScreen.classList.add("fade-out");
       setTimeout(() => {
         loadingScreen.style.display = "none";
-        explanationText.textContent = data.simplifiedText;
+        explanationText.innerHTML = data.simplifiedText;
         resultSection.style.display = "block";
         resultSection.classList.add("fade-in");
       }, 800);
