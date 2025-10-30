@@ -1,38 +1,39 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-import openai
+from openai import OpenAI
 import os
 
-app = Flask(__name__, static_folder="Simplify", static_url_path="")
+app = Flask(__name__, static_folder="static", template_folder="templates")
 CORS(app)
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# AI endpoint
+@app.route("/")
+def home():
+    return render_template("simplify.html")
+
 @app.route("/simplify", methods=["POST"])
 def simplify():
     data = request.get_json()
     topic = data.get("topic", "")
+
     if not topic:
         return jsonify({"error": "No topic provided"}), 400
+
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You simplify complex topics clearly for beginners."},
-                {"role": "user", "content": f"Explain '{topic}' in simple terms anyone can understand."}
+                {"role": "system", "content": "You explain topics simply and clearly."},
+                {"role": "user", "content": f"Simplify this topic in simple terms: {topic}"}
             ]
         )
-        explanation = response["choices"][0]["message"]["content"]
-        return jsonify({"simplifiedText": explanation})
+        simplified_text = response.choices[0].message.content
+        return jsonify({"simplifiedText": simplified_text})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# Serve frontend for any other route
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def serve_frontend(path):
-    return send_from_directory(app.static_folder, "index.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
