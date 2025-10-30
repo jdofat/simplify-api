@@ -101,7 +101,7 @@ button:hover { background-color: white; color: black; }
   flex-wrap: wrap;
   gap: 10px;
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -123,7 +123,7 @@ button:hover { background-color: white; color: black; }
 /* Smaller screens */
 @media (max-width: 870px) { #topicInput { flex: 1 1 35%; max-width: 200px; } }
 /* Mobile: nearly full width */
-@media (max-width: 600px) { #topicInput { flex: 1 1 80%; max-width: none; } }
+@media (max-width: 400px) { #topicInput { flex: 1 1 80%; max-width: none; } }
 
 /* ---------- Go Button ---------- */
 #goButton {
