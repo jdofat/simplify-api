@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
 restartButton.addEventListener("click", () => {
     // Hide the result section
     resultSection.style.display = "none";
-    resultSection.classList.remove("fade-in");
+    resultSection.classList.remove("fade-in", "fade-out");
+    inputSection.classList.remove("fade-in", "fade-out");
+
 
     // Reset input field
     topicInput.value = "";
