@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       introLabel.style.display = "none";
       inputSection.style.display = "block";
       inputSection.classList.add("fade-in");
-    }, 400); // reduced from 800
+    }, 500);
   });
 
   // "Simplify" button → show loading → fetch simplified text
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show loading screen
     inputSection.style.display = "none";
     loadingScreen.style.display = "flex";
-    loadingText.textContent = "simplifying...";
+    loadingText.textContent = "one sec";
 
     try {
       const res = await fetch("/simplify", {
