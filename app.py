@@ -10,6 +10,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @app.route("/")
 def home():
+    # Serve the main Simplify webpage
     return render_template("simplify.html")
 
 @app.route("/simplify", methods=["POST"])
@@ -31,9 +32,10 @@ def simplify():
         simplified_text = response.choices[0].message.content
         return jsonify({"simplifiedText": simplified_text})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
+        print(f"Error: {e}")
+        return jsonify({"error": "Something went wrong while simplifying."}), 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
-
+    # Port is provided automatically by Render via the PORT environment variable
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
