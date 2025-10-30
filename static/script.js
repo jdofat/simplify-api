@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   goButton.addEventListener("click", async () => {
     const topic = topicInput.value.trim();
     if (topic === "") {
-      alert("Please enter a topic first.");
+      alert("you didn't even enter a topic.");
       return;
     }
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resultSection.classList.add("fade-in");
       }, 800);
     } catch (error) {
-      loadingText.textContent = "Error: Could not simplify. Try again.";
+      loadingText.textContent = "try something else.";
       console.error(error);
     }
   });
