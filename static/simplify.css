@@ -1,263 +1,154 @@
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
- 
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
+/* ---------- Animations ---------- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+.fade-in { animation: fadeIn 1s ease forwards; }
+.fade-out { animation: fadeOut 0.8s ease forwards; }
 
-
-/* Fade animation helper classes */
-.fade-in {
-  animation: fadeIn 1s ease forwards;
-}
-
-.fade-out {
-  animation: fadeOut 0.8s ease forwards;
-}
-
+/* ---------- Body ---------- */
 body {
-  display: flex;                   /* make it a flex container */
-  flex-direction: column;          /* keep elements stacked vertically */
-  justify-content: flex-start;         /* center vertically */
-  align-items: center;             /* center horizontally */
-  min-height: 100vh;                   /* take full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
   margin: 0;
   text-align: center;
-  
   font-family: 'Lexend', sans-serif;
-  background: linear-gradient(to top right,
-    #82e0dc,
-    #8bcae0,
-    #d4d5ff,
-    #ffe3f0,
-    #ffeae3);
-    overflow-x: hidden;
+  background: linear-gradient(to top right, #82e0dc, #8bcae0, #d4d5ff, #ffe3f0, #ffeae3);
+  overflow-x: hidden;
 }
 
+/* ---------- Header & Main ---------- */
 header {
   line-height: 0.2;
   margin-top: 180px;
 }
- 
 main {
   margin-top: 20px;
   text-align: center;
   width: 100%;
   max-width: 500px;
 }
- 
-header, main {
-  opacity: 0;
-  animation: fadeIn 1.5s ease-in forwards;
-}
+header, main { opacity: 0; animation: fadeIn 1.5s ease-in forwards; }
 
-
-#mainContainer {
-  min-height: 50px;
-}
-
-
+/* ---------- Input Section ---------- */
 #inputSection {
   margin-top: -1%;
   line-height: 1;
 }
 
-
-/* what can i help you understand? */
-
-
 #inputSection h4 {
-  font-size: 1.3rem; /* ~130% of base */
+  font-size: 1.3rem;
   margin-bottom: 5%;
   margin-top: 1%;
   line-height: 1.2;
 }
 
-@media (max-width: 870px) {
-  #inputSection h4 {
-    font-size: 1.1rem;
-    margin-bottom: 4%;
-    margin-top: 0%;
-  }
+@media (max-width: 870px) { 
+  #inputSection h4 { font-size: 1.1rem; margin-bottom: 4%; margin-top: 0; } 
+}
+@media (max-width: 600px) { 
+  #inputSection h4 { font-size: 1rem; margin-bottom: 3%; margin-top: 0; } 
 }
 
-@media (max-width: 600px) {
-  #inputSection h4 {
-    font-size: 1rem;
-    margin-bottom: 3%;
-    margin-top: 0%;
-  }
-}
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5 { color: black; margin: 0.4em 0; }
 
-
-/* xxx */
-
-
-@media (min-width: 600px) {
-  #inputSection {
-    margin-top: -1%;
-    line-height: 1;
-  }
-}
-
-@media (min-width: 1070px) {
-  #inputSection {
-    margin-top: -1%;
-    line-height: 1;
-  }
-}
-
-h1, h2, h3, h4, h5 {
-  color: black;
-  margin: 0.4em 0;
-}
-
-#introLabel {
-  margin-top: 16%;
-  font-size: clamp(14px, 2.5vw, 22px);
-}
-
-@media (min-width: 600px) {
-  #introLabel {
-    margin-top: 18%;
-  }
-}
-
-@media (min-width: 770px) {
-  #introLabel {
-    margin-top: 16%;
-  }
-}
-
-@media (min-width: 1070px) {
-  #introLabel {
-    margin-top: 16%;
-  }
-}
+#introLabel { margin-top: 16%; font-size: clamp(14px, 2.5vw, 22px); }
+@media (min-width: 600px) { #introLabel { margin-top: 18%; } }
+@media (min-width: 770px) { #introLabel { margin-top: 16%; } }
+@media (min-width: 1070px) { #introLabel { margin-top: 16%; } }
 
 h1 {
   font-size: clamp(3rem, 8vw, 6rem);
   letter-spacing: 2px;
-
 }
 
 /* Fix under 770px */
-@media (max-width: 770px) {
-  h1 {
-    font-size: 4.7rem;
-  }
-}
+@media (max-width: 770px) { h1 { font-size: 4.7rem; } }
+/* 400-600px slightly bigger */
+@media (max-width: 600px) and (min-width: 400px) { h1 { font-size: 4.7rem; } }
+/* Very small screens */
+@media (max-width: 400px) { h1 { font-size: 4.7rem; } }
 
-/* Slightly bigger between 400px and 600px */
-@media (max-width: 600px) and (min-width: 400px) {
-  h1 {
-    font-size: 4.7rem; /* ~10% bigger than 4rem */
-  }
-}
+h3, h4 { font-size: clamp(1rem, 4vw, 1.8rem); }
 
-/* Very small screens under 400px */
-@media (max-width: 400px) {
-  h1 {
-    font-size: 4.7rem;
-  }
-}
-
-
-
-h3, h4 {
-  font-size: clamp(1rem, 4vw, 1.8rem);
-}
-
+/* ---------- Buttons ---------- */
 button {
-  background-color: black;
-  color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 30px;      /* rounded corners */
-  border: none;             /* removes outline/border */
-  outline: none;
-  cursor: pointer;         /* pointer on hover */
-  font-family: 'Lexend', sans-serif;
-  font-size: 20px;
-  transition: all 0.4s ease; /* smooth hover effect */
-  opacity: 0;
-  animation: fadeIn 1.5s ease-in 1s forwards;
-}
-
-button:hover {
-  background-color: white;
-  color: black;
-}
-
-input {
-  padding-bottom: 8px;
-  padding-top: 8px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 30px;
-  border: none;
-  font-family: 'Lexend', sans-serif;
-  font-size: 1rem;
-  width: 70%;
-  max-width: 300px;
-  height: 46px;
-  background-color: white;
-}
-
-input:valid {
-  background-color: white;
-    }
-
-input:focus {
-  outline: none;
-  background-color: white;
-}
-
-
-#goButton {
   background-color: black;
   color: white;
   padding: 10px 20px;
   border-radius: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Lexend', sans-serif;
+  font-size: 20px;
+  transition: all 0.4s ease;
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in 1s forwards;
+}
+
+button:hover { background-color: white; color: black; }
+
+/* ---------- Input Box ---------- */
+#explain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#topicInput {
+  flex: 1 1 auto;       /* allow input to grow/shrink */
+  min-width: 150px;     /* don't get too small */
+  max-width: 400px;
+  height: 50px;
+  font-size: 1rem;
+  border-radius: 30px;
+  border: none;
+  padding: 0 20px;
+  font-family: 'Lexend', sans-serif;
+  background-color: white;
+}
+
+/* Medium screens */
+@media (max-width: 1180px) { #topicInput { flex: 1 1 40%; max-width: 250px; } }
+/* Smaller screens */
+@media (max-width: 870px) { #topicInput { flex: 1 1 35%; max-width: 200px; } }
+/* Mobile: nearly full width */
+@media (max-width: 600px) { #topicInput { flex: 1 1 80%; max-width: none; } }
+
+/* ---------- Go Button ---------- */
+#goButton {
+  width: 25%;
+  max-width: 120px;
+  min-width: 80px;
+  height: 50px;
   font-size: 1rem;
 }
+#goButton:hover { background-color: white; color: black; }
 
-#goButton:hover {
-  background-color: white;
-  color: black;
-}
-
-/* Full-screen loading overlay */
+/* ---------- Loading Overlay ---------- */
 #loadingScreen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top right,
-    #82e0dc,
-    #8bcae0,
-    #d4d5ff,
-    #ffe3f0,
-    #ffeae3);
+  background: linear-gradient(to top right, #82e0dc, #8bcae0, #d4d5ff, #ffe3f0, #ffeae3);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 100;
 }
-
-/* Spinner animation */
 .spinner {
   border: 6px solid #f3f3f3;
   border-top: 6px solid black;
@@ -285,84 +176,4 @@ input:focus {
   line-height: 1.5;
   color: black;
   text-align: left;
-}
-
-/* Responsive tweaks */
-@media (max-width: 480px) {
-  header {
-    margin-top: 120px;
-  }
-
-  h1 {
-    font-size: 2.6rem;
-  }
-
-#explain {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-
-/* text box */
-
-/* Default input size */
-#topicInput {
-  flex: 1 1 auto;       /* allows input to grow/shrink */
-  min-width: 150px;     /* prevents it from being unusably small */
-  max-width: 400px;
-  height: 50px;
-  font-size: 1rem;
-  border-radius: 30px;
-  border: none;
-  padding: 0 20px;
-  font-family: 'Lexend', sans-serif;
-  background-color: white;
-}
-
-/* Medium screens */
-@media (max-width: 1180px) {
-  #topicInput {
-    flex: 1 1 40%;
-    max-width: 250px;
-  }
-}
-
-/* Smaller screens */
-@media (max-width: 870px) {
-  #topicInput {
-    flex: 1 1 35%;
-    max-width: 200px;
-  }
-}
-
-/* Mobile: nearly full width */
-@media (max-width: 600px) {
-  #topicInput {
-    flex: 1 1 80%;
-    max-width: none;
-  }
-}
-
-
-
-/*    xxx.    */
-
-
-#goButton {
-  width: 25%;
-  max-width: 120px;
-  min-width: 80px;
-  height: 50px;
-  font-size: 1rem;
-}
-
-#goButton:hover {
-  background-color: white;
-  color: black;
 }
