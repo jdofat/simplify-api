@@ -66,11 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
         loadingScreen.style.display = "none";
 
         // --- NEW: Format explanation neatly into paragraphs ---
-        const rawText = data.simplifiedText;
-        const paragraphs = rawText.split(/\.\s+/); // split after periods
+        const rawText = data.simplifiedText.replace(/\*\*/g, "");
+        const paragraphs = rawText.split(/\.\s+/);
         explanationText.innerHTML = paragraphs
-          .map(p => `<p>${p.trim()}.</p>`)
-          .join("");
+        .map(p => `<p>${p.trim()}.</p>`)
+        .join("");
 
         resultSection.style.display = "block";
         resultSection.classList.add("fade-in");
