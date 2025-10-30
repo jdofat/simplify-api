@@ -66,7 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
       loadingScreen.classList.add("fade-out");
       setTimeout(() => {
         loadingScreen.style.display = "none";
-        explanationText.innerHTML = data.simplifiedText;
+
+        // --- NEW: Format explanation neatly into paragraphs ---
+        const rawText = data.simplifiedText;
+        const paragraphs = rawText.split(/\.\s+/); // split after periods
+        explanationText.innerHTML = paragraphs
+          .map(p => `<p>${p.trim()}.</p>`)
+          .join("");
+
         resultSection.style.display = "block";
         resultSection.classList.add("fade-in");
 
