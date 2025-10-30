@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   learnMoreSection.style.display = "none";
   learnMoreSection.innerHTML = `
     <div class="white-box">
-      <h3>Learn More</h3>
+      <h3>learn more</h3>
       <ul id="learnMoreLinks"></ul>
     </div>
   `;
