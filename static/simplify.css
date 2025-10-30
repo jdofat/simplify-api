@@ -222,6 +222,7 @@ button:hover { background-color: white; color: black; }
     font-family: 'Lexend', sans-serif;
     font-size: 1rem;
     transition: all 0.4s ease;
+    margin-bottom: 20px;
 }
 
 #restartButton:hover {
