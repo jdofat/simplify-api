@@ -1,3 +1,6 @@
+// 1. filter by: smart explain, research assistant (peer reviewed, scholarly articles, sort by date)
+// 2. note taker
+
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("startButton");
   const introLabel = document.getElementById("introLabel");
